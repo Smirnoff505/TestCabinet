@@ -1,0 +1,37 @@
+{% extends 'cabinet/base.html' %}
+
+{% block content %}
+
+<div class="sec-form center">
+    <div class="form-box">
+        <div class="header">
+            <h1>Вход в личный кабинет</h1>
+        </div>
+
+        <form class="form-box__content" action="" method="post">
+            {% csrf_token %}
+
+            <div class="str">
+                <label for="username">Логин</label>
+                <input type="text" id="username" name="username" class="full-width " value="" maxlength="20"
+                       required="">
+            </div>
+
+            <div class="str">
+                <label for="password">Пароль</label>
+                <input type="password" name="password" id="password" class="full-width " maxlength="20"
+                       required="">
+            </div>
+
+            <div class="str">
+                <button name="btnReg" class="btnReg">Войти</button>
+            </div>
+        </form>
+        <div class="more-area">
+            Еще не зарегистрированы? <a class="link" href="{% url 'users:registration' %}" title="Войти">Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

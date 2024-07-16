@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в личный кабинет | ЛК</title>
+    <link rel="stylesheet" href="{% static 'css/style_registr.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_cabinet.css' %}">
+
+    <style>
+            .form-box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+    </style>
+
+</head>
+<body>
+    <div class="page-container">
+        <div id="cabinet-header">
+            <div class="sec-area center">
+                    <div class="menu">
+                        <div class="box box-left">
+                                <a href="{% url 'cabinet:cabinet' %}" title="InfoCloud.Su" class="trans active">
+                                <img src="{% static 'img/InfoCloud_su.png' %}" title="InfoCloud.Su" alt="InfoCloud.Su" class="menu_ua_img">
+                                </a>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div class="box box-left">
+                            <a href="#" title="Мои услуги" class="trans "><span class="icon-cart icon-cabinet-header"></span>Мои услуги</a>
+                        </div>
+                        <div class="box box-left">
+                            <a href="#" title="Журнал действий" class="trans "><span class="icon-cart icon-cabinet-header"></span>Журнал действий</a>
+                        </div>
+                        <div class="box box-left">
+                            <a href="#" title="Профиль" class="trans "><span class="icon-cart icon-cabinet-header"></span>Профиль</a>
+                        </div>
+                        <div class="box box-left">
+                            <a href="{% url 'users:logout' %}" title="Выход" class="trans "><span class="icon-cart icon-cabinet-header"></span>Выход</a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                <div class="data">
+                    Техническая поддержка
+                    <div class="tel">8 (8800) 201-00-00</div>
+                    <a href="#" title="RMS - удаленная поддержка"><img src="{% static 'img/icon_rms_h25.png' %}" title="RMS - удаленная поддержка" height="15"> RMS - удаленная поддержка</a>
+                </div>
+
+            </div>
+        </div>
+        {% block content %}
+
+        {% endblock %}
+        <footer>
+            <div class="sec-footer center">
+
+            <div class="str__footer">
+                <div class="data data-footer">
+                ©2015-{% now 'Y' %}, ООО «ПрофИнформ». Все права защищены<br>
+                Все торговые марки являются собственностью их правообладателей
+                </div>
+                <div class="contact">
+                С уважением к Вам и Вашему делу команда ООО «ПрофИнформ»<br>
+                    <span class="icon-phone"></span> 8 (8800) 201-00-00<br>
+                    <span class="icon-email"></span>
+                    <a class="contact__mail" href="mailto:test@infocloud.su" title="Написать электронное письмо">test@infocloud.su</a>
+                </div>
+                <div class="cl"></div>
+            </div>
+
+            <div class="str-info">
+                <div class="info">
+                Ваш браузер соединяется с сайтом по защищенному протоколу HTTPS. Сайт использует SSL-шифрование для всех передаваемых данных. Ваша личная информация под надежной защитой.
+                </div>
+                    <div class="cl"></div>
+            </div>
+
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

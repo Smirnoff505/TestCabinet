@@ -1,0 +1,49 @@
+{% extends 'cabinet/base.html' %}
+
+{% block content %}
+ <div class="sec-form center">
+                <div class="form-box">
+                    <div class="header">
+                        <h1>Регистрация</h1>
+                    </div>
+
+                    <form class="form-box__content" action="" method="post">
+                        {% csrf_token %}
+
+                        <div class="str">
+                        <label for="first_name">* Имя</label>
+                        <input type="text" name="first_name" id="first_name" class="full-width " maxlength="30" value="" required="">
+                        </div>
+                        <div class="str">
+                            <label for="patronymic">Отчество</label>
+                            <input type="text" name="patronymic" id="patronymic" class="full-width " maxlength="30" value="">
+                        </div>
+                        <div class="str">
+                            <label for="last_name">* Фамилия</label>
+                            <input type="text" name="last_name" id="last_name" class="full-width " maxlength="30" value="" required="">
+                        </div>
+                        <div class="str">
+                            <label for="phone">* Номер мобильного телефона
+                                <span class="tel">(будет отправлен код)</span>
+                            </label>
+                            <input type="tel" name="phone" id="phone" class="full-width " placeholder="+7 (999) 999-99-99" maxlength="20" minlength="5" value="+7" required="">
+                        </div>
+                        <div class="str">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" class="full-width " maxlength="64" value="" required="">
+                        </div>
+                        <div class="str_checkbox">
+                            <input type="checkbox" id="agreef" class="agree " name="agree" required="">
+                            <span>Я согласен принять условия <a class="link" href="#">оферты</a></span>
+                        </div>
+                        <div class="str">
+                            <button name="btnReg" class="btnReg">Зарегистрироваться</button>
+                        </div>
+                    </form>
+
+                    <div class="more-area">
+                        Уже зарегистрированы? <a class="link" href="{% url 'users:login' %}" title="Войти">Войти</a>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
