@@ -1,0 +1,78 @@
+{% extends 'cabinet/base.html' %}
+
+{% block content %}
+
+<div class="sec-content center">
+
+    {% include 'cabinet/includes/inc_left_block.html' %}
+
+    <!--    {%for object in objects_list%}-->
+    <!--    {{ object }}-->
+    <!--    {% endfor %}-->
+
+    <div class="area__finance">
+        <header class="header__finance">
+            <span class="icon-document icon-header"></span> Финансы
+        </header>
+
+        <div class="content">
+            <div class="str__finance">
+                {% for contract in contracts %}
+                <div class="str-box">
+
+                    <div class="box__finance">
+                        <div class="box-l2">
+                            <div style="font-size:90%"><b>{{ current_user }}</b></div>
+                            <div><b>{{ contract }}</b> от {{ current_user.create_user | date:"d.m.Y" }}
+                                <span style="font-size:90%;">
+                                        <a class="various" data-fancybox="" data-type="iframe" data-src="" href=""> открыть</a>
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="box-r2">
+
+                            <span style="font-size:90%;">Баланс (руб)</span><br><span style="">{{ contract.contract.balance }}</span><br>
+                        </div>
+                    </div>
+
+
+                    <div class="box__finance">
+                        <div class="box-l2">
+                            <a class="box-l2__link " href="/services-2949">Услуги  </a>
+                            <a class="box-l2__link " href="/invoices-2949">Счета  </a>
+                            <a class="box-l2__link " href="/accacts-2949">Акты  </a>
+                            <a class="box-l2__link " href="/payments-2949">Платежи  </a>
+                            <a class="box-l2__link " href="/charges-2949">Начисления  </a>
+                            <a class="box-l2__link " href="/revises-2949">Акты сверки </a>
+                        </div>
+                        <div class="box-r2">
+                            <a class="box-l2__link " href="/finances-pay-2949">Пополнить</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="cl"></div>
+        </div>
+    </div>
+
+    <div class="container-help">
+        <div class="infodata-container">
+            <div class="str-help">
+                <div class="box">
+                    Уважаемый клиент, приветствуем Вас,<br>
+                    {{ current_user }}<br>
+                    <span>Ваш логин:</span> {{ current_user.username }}
+                </div>
+                {% for contract in contracts %}
+                <div class="box">
+                    Баланс {{ contract.title }}
+                    <span style="font-weight:bold;">{{ contract.contract.balance }}</span> руб.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

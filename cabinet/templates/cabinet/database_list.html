@@ -1,0 +1,56 @@
+{% extends 'cabinet/base.html' %}
+
+{% block content %}
+
+
+<div class="sec-content center">
+
+    {% include 'cabinet/includes/inc_left_block.html' %}
+
+    <section class="box-db">
+        <div class="header-box"><h1>Базы данных</h1></div>
+        <div class="str-box__db">
+
+            {% if list_db %}
+            {% for db in list_db %}
+            <a class="" href="{% url 'cabinet:update_db' db.pk %}" title="">{{ db.title }} </a>
+            {% endfor %}
+            {% else %}
+                <div class="str-trans__db">
+                    Базы данных пока еще не добавлены
+                </div>
+            {% endif %}
+            {% if not forloop.last %}
+                   <hr style="color: #eee;">
+            {% endif %}
+
+            <a class="link__db" href="{% url 'cabinet:create_db' %}" title="Создать базу данных">Создать базу данных <span
+                    class="icon-right"></span></a>
+
+
+            <div class="cl"></div>
+        </div>
+    </section>
+
+    <div class="container-help">
+                    <div class="infodata-container">
+                        <div class="str-help">
+                            <div class="box">
+                                Уважаемый клиент, приветствуем Вас,<br>
+                                {{ current_user }}<br>
+                                <span>Ваш логин:</span> {{ current_user.username }}
+                            </div>
+                            {% for contract in contracts %}
+                            <div class="box">
+                                Баланс {{ contract.title }}
+                                <span style="font-weight:bold;">{{ contract.contract.balance }}</span> руб.
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </div>
+</div>
+</div>
+
+
+{% endblock %}

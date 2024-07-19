@@ -3,9 +3,9 @@ import random
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import  reverse
+from django.urls import reverse
 
-from cabinet.models import Contract
+from cabinet.models import Contract, Finance
 from users.forms import RegistrationForm, LoginForm
 from users.models import User
 
@@ -39,6 +39,10 @@ def registration(request):
             title = f'{login}/{1}'
             contract = Contract.objects.create(title=title, owner=user)
             contract.save()
+
+            # Создаем баланс к договору
+            balance = Finance.objects.create(title=title, contract=contract)
+            balance.save()
 
             # Сохраняем логин и пароль в сессии
             request.session['login'] = login

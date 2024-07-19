@@ -1,0 +1,49 @@
+{% extends 'cabinet/base.html' %}
+
+{% block content %}
+
+<div class="sec-content center">
+
+    {% include 'cabinet/includes/inc_left_block.html' %}
+
+         <div class="form-box" style="align-self: flex-start; margin: 20px;">
+             <div class="card" >
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success">
+                            {% if object %}
+                            Сохранить
+                            {% else %}
+                            Создать
+                            {% endif %}
+                        </button>
+                        <a href="{% url 'cabinet:db' %}" class="btn btn-secondary">Отмена</a>
+                    </form>
+                </div>
+            </div>
+         </div>
+
+    <div class="container-help">
+                    <div class="infodata-container">
+                        <div class="str-help">
+                            <div class="box">
+                                Уважаемый клиент, приветствуем Вас,<br>
+                                {{ current_user }}<br>
+                                <span>Ваш логин:</span> {{ current_user.username }}
+                            </div>
+                            {% for contract in contracts %}
+                            <div class="box">
+                                Баланс {{ contract.title }}
+                                <span style="font-weight:bold;">{{ contract.contract.balance }}</span> руб.
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </div>
+
+</div>
+
+
+{% endblock %}
